@@ -114,6 +114,7 @@ struct List{
             getElement(position);
             nowElement->prev->next = nowElement->next;
             nowElement->next->prev = nowElement->prev;
+            currentElement = nowElement;
             delete currentElement;
             lastPoint = make_pair(nullptr, 0);
         }
@@ -128,7 +129,7 @@ struct List{
     void clear(){
         if(is_empty()){ return; }
         Node<T>* currentElement = first;
-        while(currentElement->next != nullptr){
+        while(currentElement != last){
             Node<T>* forDel = currentElement;
             delete forDel;
             currentElement = currentElement->next;
@@ -257,9 +258,6 @@ int main(int argc, char *argv[]){
         }
         else if(s == "stop"){
             break;
-        }
-        else{
-            cout << "unknown command\n";
         }
     }
     return 0;
