@@ -73,13 +73,11 @@ struct List{
             last->next = insertElement;
             insertElement->prev = last;
             last = insertElement;
-            return;
         }
         else if(position == 0){
             insertElement->next = first;
             first->prev = insertElement;
             first = insertElement;
-            return;
         }
         else{
             getElement(position);
@@ -87,8 +85,8 @@ struct List{
             insertElement->prev = nowElement->prev;
             nowElement->prev->next = insertElement;
             nowElement->prev = insertElement;
-            lastPoint = make_pair(insertElement, position);
         }
+        lastPoint = make_pair(insertElement, position);
     }
 
     void removeAt(int position){
