@@ -94,7 +94,7 @@ struct List{
         numberOfElements--;
         Node<T>* currentElement = first;
         if(position == 0){
-            if(first == last){
+            if(numberOfElements == 0){
                 clear();
                 return;
             }
@@ -114,8 +114,8 @@ struct List{
             nowElement->next->prev = nowElement->prev;
             currentElement = nowElement;
             delete currentElement;
-            lastPoint = make_pair(nullptr, 0);
         }
+        lastPoint = make_pair(nullptr, 0);
     }
 
     T elementAt(int position){
@@ -135,6 +135,7 @@ struct List{
         delete currentElement;
         first = nullptr;
         last = nullptr;
+        lastPoint = make_pair(nullptr, 0);
     }
 };
 
@@ -232,9 +233,9 @@ int main(int argc, char *argv[]){
             for (int i = 0; i < list.count(); ++i) {
                 element value = list.elementAt(i);
                 bool ch = 0;
-                for(auto it : regPop){
-                    if(it.second == value.regionName){
-                        it.first += value.townPopulation;
+                for(int j= 0; j < regPop.size(); j++){
+                    if(regPop[j].second == value.regionName){
+                        regPop[j].first += value.townPopulation;
                         ch = 1;
                         break;
                     }
